@@ -21,7 +21,7 @@ type fileConfig struct {
 	Userquota string
 }
 type logConfig struct {
-    Level   string
+	Level string
 }
 
 type configFile struct {
@@ -29,7 +29,7 @@ type configFile struct {
 	CDN     cdnConfig
 	Network networkConfig
 	Storage fileConfig
-    Log     logConfig
+	Log     logConfig
 }
 
 const defaultConfig = `
@@ -57,7 +57,7 @@ var (
 	CDN     cdnConfig
 	Network networkConfig
 	Storage fileConfig
-    Log     logConfig
+	Log     logConfig
 )
 
 func init() {
@@ -74,16 +74,16 @@ func init() {
 	// CDN      = "https://cdn.subut.ai:8338"
 	Network = config.Network
 	Storage = config.Storage
-    Log = config.Log
+	Log = config.Log
 
-    switch Log.level {
-    case "Debug":
-        log.Level(log.DebugLevel)
-    case "Warn":
-        log.Level(log.WarnLevel)
-    case "Info":
-        log.Level(log.InfoLevel)
-    }
+	switch Log.Level {
+	case "Debug":
+		log.Level(log.DebugLevel)
+	case "Warn":
+		log.Level(log.WarnLevel)
+	case "Info":
+		log.Level(log.InfoLevel)
+	}
 }
 
 func DefaultQuota() int {
