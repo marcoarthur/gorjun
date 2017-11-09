@@ -1,8 +1,8 @@
 gorjun
 my.db
 gorjun_*
-vcs.xml
 .idea/gorjun.iml
 .idea/inspectionProfiles/
 .idea/modules.xml
 .idea/workspace.xml
+.idea/
