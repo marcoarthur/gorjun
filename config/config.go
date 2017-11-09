@@ -20,12 +20,16 @@ type fileConfig struct {
 	Path      string
 	Userquota string
 }
+type logConfig struct {
+    Level   string
+}
 
 type configFile struct {
 	DB      dbConfig
 	CDN     cdnConfig
 	Network networkConfig
 	Storage fileConfig
+    Log     logConfig
 }
 
 const defaultConfig = `
@@ -41,6 +45,9 @@ const defaultConfig = `
 	[storage]
 	path = /opt/gorjun/data/files/
 	userquota = 2G
+
+    [log]
+    level = Debug
 `
 
 var (
@@ -50,6 +57,7 @@ var (
 	CDN     cdnConfig
 	Network networkConfig
 	Storage fileConfig
+    Log     logConfig
 )
 
 func init() {
@@ -66,6 +74,16 @@ func init() {
 	// CDN      = "https://cdn.subut.ai:8338"
 	Network = config.Network
 	Storage = config.Storage
+    Log = config.Log
+
+    switch Log.level {
+    case "Debug":
+        log.Level(log.DebugLevel)
+    case "Warn":
+        log.Level(log.WarnLevel)
+    case "Info":
+        log.Level(log.InfoLevel)
+    }
 }
 
 func DefaultQuota() int {
